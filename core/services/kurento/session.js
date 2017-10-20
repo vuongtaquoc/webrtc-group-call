@@ -63,3 +63,5 @@ class Session {
 		this.name = userName;
 	}
 }
+
+module.exports = Session;

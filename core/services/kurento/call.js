@@ -311,3 +311,5 @@ class Call {
 		delete userSession.roomName;
 	}
 }
+
+module.exports = Call;
