@@ -27,7 +27,7 @@ sudo service kurento-media-server-6.0 start
 sudo service kurento-media-server-6.0 stop
 ```
 
-See more [Installation guide](http://doc-kurento.readthedocs.io/en/stable/installation_guide.html)
+See more [Kurento installation guide](http://doc-kurento.readthedocs.io/en/stable/installation_guide.html)
 
 * `node` and `npm` ([How To Install Node.js on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04))
 * Ensure you're running the latest versions Node `v6.x.x`+ (or `v7.x.x`) and NPM `3.x.x`+
