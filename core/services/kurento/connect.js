@@ -3,6 +3,8 @@
 const kurento = require('kurento-client');
 const url = require('url');
 
+const config = require('../../config');
+
 const wsUrl = url.parse(config.server.kurentoSocketUri).href;
 
 module.exports = (callback) => {

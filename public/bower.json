@@ -1,0 +1,23 @@
+{
+  "name": "webrtc-group-call",
+  "homepage": "https://github.com/vuongtaquoc/webrtc-group-call",
+  "authors": [
+    "Vuong Ta Quoc <tqv.itvn@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "socket.io-client": "2.0.3",
+    "adapter.js": "v0.2.9",
+    "bootstrap": "v4.0.0-beta",
+    "kurento-utils": "6.6.0"
+  }
+}

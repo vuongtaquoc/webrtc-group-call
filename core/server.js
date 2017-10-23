@@ -18,6 +18,7 @@ const server = https.createServer(options, app);
 
 require('./socket')(server);
 
+app.use('/lib', express.static(path.join(__dirname, '../public/bower_components')));
 app.use(express.static(path.join(__dirname, '../public')));
 
 module.exports = server;

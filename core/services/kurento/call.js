@@ -34,7 +34,7 @@ class Call {
 	}
 
 	getRoom(roomName, callback) {
-		let room = rooms[roomName];
+		let room = this.rooms[roomName];
 
 		if (room) {
 			console.log(`get existing room: ${roomName}`);
@@ -60,7 +60,7 @@ class Call {
 					kurentoClient: kurentoClient,
 				};
 
-				rooms[roomName] = room;
+				this.rooms[roomName] = room;
 				callback(null, room);
 			});
 		});
@@ -70,7 +70,7 @@ class Call {
 		// add user to session
 		const userSession = new UserSession(socket, userName, room.name);
 
-		userRegister.register(userRegister);
+		this.userRegister.register(userSession);
 
 		room.pipeline.create('WebRtcEndpoint', (error, outgoingMedia) => {
 			if (error) {
@@ -137,8 +137,8 @@ class Call {
 	}
 
 	receiveVideoFrom(socket, senderName, sdpOffer, callback) {
-		const userSession = userRegister.getById(socket.id);
-		const sender = userRegister.getByName(senderName);
+		const userSession = this.userRegister.getById(socket.id);
+		const sender = this.userRegister.getByName(senderName);
 
 		this.getEndpointForUser(userSession, sender, (error, endpoint) => {
 			if (error) {
@@ -173,16 +173,16 @@ class Call {
 	}
 
 	addIceCandidate(socket, message, callback) {
-		const user = userRegister.getById(socket.id);
+		const user = this.userRegister.getById(socket.id);
 
 		if (user) {
+			const candidate = kurento.register.complexTypes.IceCandidate(message.candidate);
+			user.addIceCandidate(message, candidate);
+			callback();
+		} else {
 			console.error(`ice candidate with no user receive : ${message.sender}`);
-			return callback(new Error('addIceCandidate Failed'));
+			callback(new Error('addIceCandidate Failed'));
 		}
-
-		const candidate = kurento.register.complexTypes.IceCandidate(message.candidate);
-		user.addIceCandidate(message, candidate);
-		callback();
 	}
 
 	getEndpointForUser(userSession, sender, callback) {
@@ -206,7 +206,7 @@ class Call {
 
 		console.log(`user : ${userSession.id} create endpoint to receive video from : ${sender.id}`);
 		this.getRoom(userSession.roomName, (error, room) => {
-			if (error) } {
+			if (error) {
 				console.error(error);
 				return callback(error);
 			}
@@ -260,13 +260,13 @@ class Call {
 	}
 
 	leaveRoom(socket, callback) {
-		const userSession = userRegister.getById(socket.id);
+		const userSession = this.userRegister.getById(socket.id);
 
 		if (!userSession) {
 			return;
 		}
 
-		const room = rooms[userSession.roomName];
+		const room = this.rooms[userSession.roomName];
 
 		if (!room) {
 			return;
@@ -306,7 +306,7 @@ class Call {
 			if (room.pipeline) {
 				room.pipeline.release();
 			}
-			delete rooms[userSession.roomName];
+			delete this.rooms[userSession.roomName];
 		}
 		delete userSession.roomName;
 	}

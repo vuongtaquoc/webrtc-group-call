@@ -4,9 +4,42 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Project-X</title>
+	<title>Webrtc group call</title>
+	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-	xx
+	<div class="container-fluid">
+		<div class="webrtc-component">
+			<form id="create-room">
+				<div class="form-row align-items-center">
+					<div class="col-auto">
+						<input type="text" class="form-control" placeholder="Enter a user name" id="room-user">
+					</div>
+					<div class="col-auto">
+						<input type="text" class="form-control" placeholder="Enter a room" id="room-name">
+					</div>
+					<div class="col-auto">
+						<button class="btn btn-primary" type="submit">Join room</button>
+					</div>
+				</div>
+			</form>
+
+			<div class="room-info" id="room-info">
+				<div id="room-title"></div>
+				<button type="button" id="button-leave" class="btn btn-danger">Leave room</button>
+			</div>
+		</div><!-- webrtc-component -->
+
+		<div class="webrtc-component">
+			<div id="participants" class="clearfix"></div>
+		</div>
+	</div>
+
+	<script src="/lib/socket.io-client/dist/socket.io.js"></script>
+	<script src="/lib/adapter.js/adapter.js"></script>
+	<script src="/lib/kurento-utils/js/kurento-utils.min.js"></script>
+	<script src="/js/participant.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>

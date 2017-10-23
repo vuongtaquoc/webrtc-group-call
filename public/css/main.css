@@ -1,0 +1,29 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.clearfix {
+	overflow: auto;
+	zoom: 1;
+}
+
+.webrtc-component {
+	margin-top: 10px;
+}
+
+.room-info {
+	display: none;
+}
+
+.participant {
+	width: 640px;
+	float: left;
+	margin-right: 10px;
+}
